@@ -1,0 +1,18 @@
+BEGIN;
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE users (
+   id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+   name VARCHAR(255) NOT NULL UNIQUE,
+   email VARCHAR(255) UNIQUE,
+   password VARCHAR(255) NOT NULL,
+   role_id integer NOT NULL,
+   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   deleted_at TIMESTAMP,
+
+   CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
+);
+
+COMMIT;
