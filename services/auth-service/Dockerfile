@@ -7,6 +7,7 @@ COPY ./go.work.sum ./go.work.sum
 COPY ./libs ./libs
 COPY ./services ./services
 
+# Fetch Dependencies
 WORKDIR /app/libs
 RUN go mod download
 
