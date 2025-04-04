@@ -1,5 +1,7 @@
 name: Golang CI
-on: [push]
+on:
+  push:
+    branches: [main]
 jobs:
   Explore-github-actions:
     runs-on: ubuntu-latest
