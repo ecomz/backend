@@ -28,7 +28,7 @@ jobs:
           go build -v ./...
       - name: Build Docker image
         run: |
-          docker build -t ecomz/${{ matrix.service }} -f ./services/${{ matrix.service }}/Dockerfile .
+          docker build -t putrasetyo/${{ matrix.service }} -f ./services/${{ matrix.service }}/Dockerfile .
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -36,7 +36,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Push Docker image
         run: |
-          docker push ecomz/${{ matrix.service }}
+          docker push putrasetyo/${{ matrix.service }}
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            docker pull ecomz/${{ matrix.service }}
+            docker pull putrasetyo/${{ matrix.service }}
             docker stop ${{ matrix.service }}
             docker rm ${{ matrix.service }}
-            docker run -d --name ${{ matrix.service }} -p 8080:8080 ecomz/${{ matrix.service }}
+            docker run -d --name ${{ matrix.service }} -p 8080:8080 putrasetyo/${{ matrix.service }}
