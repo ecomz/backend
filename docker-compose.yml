@@ -13,6 +13,21 @@ services:
       interval: 5s
       retries: 5
 
+  reverse-proxy:
+    build:
+      context: .
+      dockerfile: ./reverse-proxy/Dockerfile
+    restart: on-failure
+    volumes:
+      - "/run/docker.sock:/run/run/docker.sock:ro"
+    networks:
+      - local
+      - external
+    ports:
+      - "8001:80"
+    depends_on:
+      - auth-service
+
   postgres:
     image: postgres:latest
     restart: always
@@ -77,6 +92,7 @@ services:
 
 networks:
   local:
+  external:
 
 volumes:
   redis-data:

@@ -14,7 +14,7 @@ type Response struct {
 func SuccessResponse(w http.ResponseWriter, statusCode int, message string, data any) {
 	response := Response{
 		StatusCode: 200,
-		Message:    "Success",
+		Message:    message,
 		Data:       data,
 	}
 

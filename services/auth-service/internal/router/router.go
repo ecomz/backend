@@ -11,13 +11,10 @@ func NewRouter(userHandler *handler.UserHandler, roleHandler *handler.RoleHandle
 	r := mux.NewRouter()
 
 	api := r.PathPrefix("/api").Subrouter()
-
-	role := api.PathPrefix("/role").Subrouter()
-
-	role.HandleFunc("", roleHandler.GetAllRoles).Methods(http.MethodGet)
-	role.HandleFunc("", roleHandler.CreateRole).Methods(http.MethodPost)
-
 	auth := api.PathPrefix("/auth").Subrouter()
+
+	auth.HandleFunc("/role", roleHandler.GetAllRoles).Methods(http.MethodGet)
+	auth.HandleFunc("/role", roleHandler.CreateRole).Methods(http.MethodPost)
 
 	auth.HandleFunc("/login", userHandler.Login).Methods(http.MethodPost)
 	auth.HandleFunc("/register", userHandler.Register).Methods(http.MethodPost)

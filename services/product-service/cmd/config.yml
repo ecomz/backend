@@ -1,0 +1,17 @@
+APP_NAME: "ecomz"
+HTTP_PORT: "8081"
+
+DSN: "postgresql://ecomz_owner:npg_Tsn9LAwJd0ij@ep-polished-sky-a15ui25a-pooler.ap-southeast-1.aws.neon.tech/ecomz?sslmode=require"
+DB_MAX_OPEN_CONNS: "20"
+DB_MAX_IDLE_CONNS: "100"
+MAX_CONN_LIFE_TIME: "60"
+MAX_CONN_IDLE_TIME: "100"
+
+JWT_SECRET_KEY: "secret"
+JWT_LOGIN_EXP: "15"
+JWT_REFRESH_EXP: "7"
+
+REDIS_HOST: "localhost"
+REDIS_PORT: "6379"
+REDIS_PASSWORD: ""
+REDIS_MAX_IDLE: "19"
