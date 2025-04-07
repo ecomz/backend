@@ -20,7 +20,7 @@ jobs:
           go-version: 1.24
       - name: Install dependencies
         run: |
-          cd ${{ matrix.service }}
+          cd services/${{ matrix.service }}
           go mod tidy
       - name: Build service
         run: |
