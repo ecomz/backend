@@ -25,7 +25,7 @@ jobs:
       - name: Build service
         run: |
           cd services/${{ matrix.service }}
-          go build -o main ./...
+          go build -v ./...
       - name: Build Docker image
         run: |
           docker build -t ecomz/${{ matrix.service }} ./services/${{ matrix.service }}
