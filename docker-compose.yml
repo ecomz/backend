@@ -67,6 +67,7 @@ services:
 
   auth-service:
     hostname: auth-service-host
+    dns: 8.8.8.8
     build:
       context: .
       dockerfile: ./services/auth-service/Dockerfile

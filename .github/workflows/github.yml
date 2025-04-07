@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            docker pull putrasetyo/${{ matrix.service }}
+            docker pull --dns=8.8.8.8 --dns=1.1.1.1 putrasetyo/${{ matrix.service }}
             docker stop ${{ matrix.service }}
             docker rm ${{ matrix.service }}
-            docker run -d --name ${{ matrix.service }} -p 8080:8080 putrasetyo/${{ matrix.service }}
+            docker run -d --name ${{ matrix.service }} -p 8080:8080 --dns=8.8.8.8 --dns=1.1.1.1 putrasetyo/${{ matrix.service }}
